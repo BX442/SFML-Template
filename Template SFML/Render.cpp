@@ -36,8 +36,8 @@ void Render::SetFpsCount(std::string fps)
 {
 	this->dfps.setString(fps);
 }
-extern Sprite g_packMan;
-extern Actor packMan;
+//extern Sprite g_packMan;
+//extern Actor packMan;
 void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
@@ -53,7 +53,7 @@ void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 			//sprite.setTextureRect(sf::IntRect(w * g_spriteSize, h * g_spriteSize, g_spriteSize, g_spriteSize));
 			//sprite.setPosition(w * 32, hPos);
-			target.draw(packMan.getActorSprite()->getSprite(), states);
+			//target.draw(packMan.getActorSprite()->getSprite(), states);
 		}
 	}
 	

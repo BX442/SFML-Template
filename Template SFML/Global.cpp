@@ -9,8 +9,8 @@ Settings g_settings;
 unsigned __int8 g_spriteSize = g_settings.GetSpriteSize();
 Graphics g_gameGraphics("data/images/tileset/set_max.png");
 sf::Texture g_mainTexture = g_gameGraphics.GetTexture();
-Sprite g_packMan(27, 94, g_spriteSize);
-Actor packMan(g_packMan);
+//Sprite g_packMan(27, 94, g_spriteSize);
+//Actor packMan(g_packMan);
 //MapCell one(EARTH);
 
 

@@ -26,19 +26,21 @@ int main()
 	srand(static_cast<int>(currentTime)); ///cout << currentTime << endl;
 
 	///Start
-	sf::Image tileSet;
-	tileSet.loadFromFile("data/images/tileset/set_max.png");
+	//sf::Image tileSet;
+	//tileSet.loadFromFile("data/images/tileset/set_max.png");
+	//
+	//sf::Texture mainTexture;
+	//mainTexture.loadFromImage(tileSet);
+	//tileSet.~Image();
+	//
+	//sf::Sprite testSprite;
+	//testSprite.setTexture(g_mainTexture);
+	//testSprite.setTextureRect(sf::IntRect(11 * g_spriteSize, 9 * g_spriteSize, g_spriteSize, g_spriteSize));
+	//testSprite.setPosition(0, 0);
 
-	sf::Texture mainTexture;
-	mainTexture.loadFromImage(tileSet);
-	tileSet.~Image();
-
-	sf::Sprite testSprite;
-	testSprite.setTexture(mainTexture);
-	testSprite.setTextureRect(sf::IntRect(11 * g_spriteSize, 9 * g_spriteSize, g_spriteSize, g_spriteSize));
-	testSprite.setPosition(0, 0);
-	extern Sprite g_packMan;
-	extern Actor packMan;
+	//extern Sprite g_packMan;
+	//extern Actor packMan;
+	Sprite g_packMan(27, 94, g_spriteSize);
 
 	Render floor;
 
@@ -67,10 +69,11 @@ int main()
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) { testSprite.move(0, 0.4f); } //вторая координата (У) положительна =>идём вниз (если не понятно почему именно вниз - смотрим предыдущие уроки)
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { window.close(); }
 
-
+		//TODO:Что та в собсвтенном класе спрайта не так, он не отдаёт картинку
 		window.clear();
 		//window.draw(floor);
-		window.draw(packMan.getActorSprite()->getSprite());
+		//window.draw(packMan.getActorSprite()->getSprite());
+		window.draw(g_packMan.getSprite());
 		//window.draw(sprite);
 		//window.draw(text);
 		window.display();
