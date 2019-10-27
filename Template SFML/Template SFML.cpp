@@ -7,7 +7,6 @@
 #include "Render.h"
 #include "Actor.h"
 
-//TODO:Инициализация карты в Game.cpp и передача в рендер
 
 using std::cout;
 using std::endl;

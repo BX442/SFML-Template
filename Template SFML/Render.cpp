@@ -11,8 +11,8 @@
 
 extern Sprite g_packMan;
 extern Actor packMan;
-extern Cell *g_map[24][24];
-extern void mapConvert();
+extern Cell *g_map[22][22];
+
 Render::Render()
 {
 	this->dfont.loadFromFile("data/fonts/Arial.ttf");
@@ -26,7 +26,6 @@ Render::Render()
 	this->dtileCount = dfieldHeight * dfieldWidth;
 
 	std::cout << "Размер экрана в плитках: " << this->GetFieldWidth() << 'x' << this->GetFieldHeight() << std::endl;
-	mapConvert();
 }
 
 int Render::GetFieldHeight() const
@@ -44,7 +43,7 @@ void Render::SetFpsCount(std::string fps)
 	this->dfps.setString(fps);
 }
 
-extern Game game;
+extern Game mainGame;
 void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
@@ -52,15 +51,16 @@ void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	//sf::Sprite sprite;
 	//sprite.setTexture(g_mainTexture);
 	//sprite.setTextureRect(sf::IntRect(19 * g_spriteSize, 16 * g_spriteSize, g_spriteSize, g_spriteSize));
-	for (auto h = 0; h < 24; h++)
+	for (auto h = 0; h < 22; h++)
 	{
 		const unsigned short hPos = h * 32;
 		
-		for (auto w = 0; w < 24; w++)
+		for (auto w = 0; w < 22; w++)
 		{
 			//sprite.setTextureRect(sf::IntRect(w * g_spriteSize, h * g_spriteSize, g_spriteSize, g_spriteSize));
-			game.getMapCell(w,h)->getCellSprite() ->setPosition(w * 32, hPos);
-			target.draw(game.getMapCell(w, h)->getCellSprite()->getSprite(), states);
+			//mainGame.getMapCell(0,0).getCellSprite()->getSprite();
+			mainGame.getMapCell(h,w).getCellSprite()->setPosition(w * 32, hPos);
+			target.draw(mainGame.getMapCell(h, w).getCellSprite()->getSprite(), states);
 		}
 	}
 	

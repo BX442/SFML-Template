@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "Game.h"
 
-Game::Game(unsigned short (&array)[24][24])
+Game::Game(unsigned short (&array)[22][22])
 {
-	for (auto h = 0; h < 24; h++)
+	for (auto h = 0; h < 22; h++)
 	{
-		for (auto w = 0; w < 24; w++)
+		for (auto w = 0; w < 22; w++)
 		{
 			if (array[h][w] == 0)
 			{
@@ -13,18 +13,22 @@ Game::Game(unsigned short (&array)[24][24])
 			}
 			else
 			{
-				//dmap[h][w] = &g_floor;
+				dmap[h][w] = &g_floor;
 			}
 		}
 	}
 }
+
+
 
 void *Game::getMap()
 {
 	return dmap;
 }
 
-Cell *Game::getMapCell(unsigned int x, unsigned int y)
+Cell &Game::getMapCell(unsigned int x, unsigned int y)
 {
-	return dmap[x][y];
+	return *dmap[x][y];
 }
+
+

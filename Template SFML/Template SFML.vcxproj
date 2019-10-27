@@ -165,7 +165,6 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -179,7 +178,6 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Cell.h" />
-    <ClInclude Include="Functions.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="pch.h" />
