@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Sprite.h"
+#include <iostream>
 
 Sprite::Sprite()
 {

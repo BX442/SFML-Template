@@ -7,15 +7,17 @@
 #include "Render.h"
 #include "Actor.h"
 
+//TODO:Инициализация карты в Game.cpp и передача в рендер
+
 using std::cout;
 using std::endl;
+
 
 int main()
 {
 	///Settings
 	system("color 80");
 	setlocale(LC_ALL, "");
-
 	///Parametrs
 	sf::RenderWindow window(sf::VideoMode(g_settings.GetWidth(), g_settings.GetHeight()), "Template SFML");
 	//window.setVerticalSyncEnabled(true);
@@ -25,7 +27,7 @@ int main()
 	time(&currentTime);
 	srand(static_cast<int>(currentTime)); ///cout << currentTime << endl;
 
-	///Start
+	//Start
 	//sf::Image tileSet;
 	//tileSet.loadFromFile("data/images/tileset/set_max.png");
 	//
@@ -33,21 +35,21 @@ int main()
 	//mainTexture.loadFromImage(tileSet);
 	//tileSet.~Image();
 	//
+	//Test spprite(g_mainTexture);
+	
 	//sf::Sprite testSprite;
 	//testSprite.setTexture(g_mainTexture);
 	//testSprite.setTextureRect(sf::IntRect(11 * g_spriteSize, 9 * g_spriteSize, g_spriteSize, g_spriteSize));
 	//testSprite.setPosition(0, 0);
 
-	//extern Sprite g_packMan;
-	//extern Actor packMan;
-	Sprite g_packMan(27, 94, g_spriteSize);
+	extern Sprite g_packMan;
+	extern Actor packMan;
 
-	Render floor;
-
+	Render test;
 	//sf::Clock clock;
 	while (window.isOpen())
 	{
-		auto start = clock();
+		double start = clock();
 		sf::Event event{};
 		while (window.pollEvent(event))
 		{
@@ -69,19 +71,21 @@ int main()
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) { testSprite.move(0, 0.4f); } //вторая координата (У) положительна =>идём вниз (если не понятно почему именно вниз - смотрим предыдущие уроки)
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { window.close(); }
 
-		//TODO:Что та в собсвтенном класе спрайта не так, он не отдаёт картинку
+		//TODO:Что то в собсвтенном класе спрайта не так, он не отдаёт картинку
+		
 		window.clear();
-		//window.draw(floor);
+		window.draw(test);
 		//window.draw(packMan.getActorSprite()->getSprite());
-		window.draw(g_packMan.getSprite());
+		//window.draw(g_packMan.getSprite());
+		//window.draw(spprite.getSprite());
 		//window.draw(sprite);
 		//window.draw(text);
 		window.display();
-		auto end = clock();
-		auto seconds = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+		double end = clock();
+		double seconds = (end - start) / CLOCKS_PER_SEC;
 		//fps = std::to_string(seconds);
 		//cout << f() << endl;
-		if (seconds > 0.019f)
+		if (seconds > 0.017f)
 		{
 			cout << "Отклонения: " << seconds /*<< "\tШтамп: " << clock() */ << endl;
 		}
