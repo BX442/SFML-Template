@@ -1,6 +1,7 @@
 #pragma once
 #include "Settings.h"
 #include "Cell.h"
+#include "Actor.h"
 
 extern Cell g_wall;
 extern Cell g_floor;
@@ -36,8 +37,13 @@ class Game
 {
 protected:
 	Cell *dmap[22][22];
+	unsigned __int8 dmoveMap[22][22];
+
+	Actor dactors[4];
 public:
 	Game(unsigned short (&array)[22][22]);
+
+	//Game& operator=(const Game&& ref);
 
 	void *getMap();
 	Cell &getMapCell(unsigned int, unsigned int);

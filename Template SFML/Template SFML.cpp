@@ -5,8 +5,6 @@
 #include <SFML/Graphics.hpp>
 #include "Settings.h"
 #include "Render.h"
-#include "Actor.h"
-
 
 using std::cout;
 using std::endl;
@@ -25,24 +23,6 @@ int main()
 	time_t currentTime;
 	time(&currentTime);
 	srand(static_cast<int>(currentTime)); ///cout << currentTime << endl;
-
-	//Start
-	//sf::Image tileSet;
-	//tileSet.loadFromFile("data/images/tileset/set_max.png");
-	//
-	//sf::Texture mainTexture;
-	//mainTexture.loadFromImage(tileSet);
-	//tileSet.~Image();
-	//
-	//Test spprite(g_mainTexture);
-	
-	//sf::Sprite testSprite;
-	//testSprite.setTexture(g_mainTexture);
-	//testSprite.setTextureRect(sf::IntRect(11 * g_spriteSize, 9 * g_spriteSize, g_spriteSize, g_spriteSize));
-	//testSprite.setPosition(0, 0);
-
-	extern Sprite g_packMan;
-	extern Actor packMan;
 
 	Render test;
 	//sf::Clock clock;
@@ -74,11 +54,6 @@ int main()
 		
 		window.clear();
 		window.draw(test);
-		//window.draw(packMan.getActorSprite()->getSprite());
-		//window.draw(g_packMan.getSprite());
-		//window.draw(spprite.getSprite());
-		//window.draw(sprite);
-		//window.draw(text);
 		window.display();
 		double end = clock();
 		double seconds = (end - start) / CLOCKS_PER_SEC;

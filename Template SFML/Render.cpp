@@ -60,6 +60,7 @@ void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 			//sprite.setTextureRect(sf::IntRect(w * g_spriteSize, h * g_spriteSize, g_spriteSize, g_spriteSize));
 			//mainGame.getMapCell(0,0).getCellSprite()->getSprite();
 			mainGame.getMapCell(h,w).getCellSprite()->setPosition(w * 32, hPos);
+			
 			target.draw(mainGame.getMapCell(h, w).getCellSprite()->getSprite(), states);
 		}
 	}
