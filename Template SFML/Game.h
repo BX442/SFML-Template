@@ -37,7 +37,7 @@ class Game
 {
 protected:
 	Cell *dmap[22][22];
-	unsigned __int8 dmoveMap[22][22];
+	unsigned short dmoveMap[22][22];
 
 	Actor dactors[4];
 public:
@@ -47,5 +47,7 @@ public:
 
 	void *getMap();
 	Cell &getMapCell(unsigned int, unsigned int);
+	unsigned short getMoveMap(unsigned int, unsigned int);
+	Actor &getActor(unsigned int actorId);
 };
 

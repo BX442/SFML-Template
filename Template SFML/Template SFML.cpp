@@ -24,6 +24,8 @@ int main()
 	time(&currentTime);
 	srand(static_cast<int>(currentTime)); ///cout << currentTime << endl;
 
+	bool startFrame = true;
+	
 	Render test;
 	//sf::Clock clock;
 	while (window.isOpen())
@@ -41,6 +43,7 @@ int main()
 				//if (event.key.code == sf::Keyboard::Numpad6) { testSprite.move(1.0f, 0); }
 				//if (event.key.code == sf::Keyboard::Numpad8) { testSprite.move(0, -1.0f); }
 				//if (event.key.code == sf::Keyboard::Numpad2) { testSprite.move(0, 1.0f); }
+				if (event.key.code == sf::Keyboard::Numpad0) { startFrame = true; }
 				if (event.key.code == sf::Keyboard::Escape) window.close();
 			}
 		}
@@ -50,18 +53,22 @@ int main()
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) { testSprite.move(0, 0.4f); } //вторая координата (У) положительна =>идём вниз (если не понятно почему именно вниз - смотрим предыдущие уроки)
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { window.close(); }
 
-		//TODO:Что то в собсвтенном класе спрайта не так, он не отдаёт картинку
-		
-		window.clear();
-		window.draw(test);
-		window.display();
-		double end = clock();
-		double seconds = (end - start) / CLOCKS_PER_SEC;
-		//fps = std::to_string(seconds);
-		//cout << f() << endl;
-		if (seconds > 0.017f)
+
+		if (startFrame)
 		{
-			cout << "Отклонения: " << seconds /*<< "\tШтамп: " << clock() */ << endl;
+			window.clear();
+			window.draw(test);
+			window.display();
+			double end = clock();
+			double seconds = (end - start) / CLOCKS_PER_SEC;
+			//fps = std::to_string(seconds);
+			//cout << f() << endl;
+			if (seconds > 0.017f)
+			{
+				cout << "Отклонения: " << seconds /*<< "\tШтамп: " << clock() */ << endl;
+			}
+			startFrame = false;
+			cout << "Конец кадра" << endl;
 		}
 	}
 }

@@ -22,12 +22,12 @@ Sprite *Actor::getActorSprite()
 	return &dActorSprite;
 }
 
-auto Actor::getId()
+unsigned int Actor::getId()
 {
 	return did;
 }
 
-auto Actor::getEnemyStatus()
+bool Actor::getEnemyStatus()
 {
 	return denemy;
 }

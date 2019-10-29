@@ -13,8 +13,8 @@ public:
 	Actor &operator=(const Actor&&ref);
 
 	Sprite *getActorSprite();
-	auto getId();
-	auto getEnemyStatus();
+	unsigned int getId();
+	bool getEnemyStatus();
 
 	void moveActor() {};
 };
