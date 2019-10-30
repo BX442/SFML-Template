@@ -47,28 +47,27 @@ extern Game mainGame;
 void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
-
+	unsigned short hPos = 0;
+	unsigned int object = 0;
 	//sf::Sprite sprite;
 	//sprite.setTexture(g_mainTexture);
 	//sprite.setTextureRect(sf::IntRect(19 * g_spriteSize, 16 * g_spriteSize, g_spriteSize, g_spriteSize));
 	for (auto h = 0; h < 22; h++)
 	{
-		const unsigned short hPos = h * 32;
+		hPos = h * 32;
 		
 		for (auto w = 0; w < 22; w++)
 		{
 			//sprite.setTextureRect(sf::IntRect(w * g_spriteSize, h * g_spriteSize, g_spriteSize, g_spriteSize));
 			//mainGame.getMapCell(0,0).getCellSprite()->getSprite();
-			mainGame.getMapCell(h,w).getCellSprite()->setPosition(w * 32, hPos);
-			unsigned int object = mainGame.getMoveMap(h, w);
-			target.draw(mainGame.getMapCell(h, w).getCellSprite()->getSprite(), states);
-			if (object == 0)
-			{
-				mainGame.getActor(object).getActorSprite()->getSprite().setPosition(w * 32, hPos);
-				
-				target.draw(mainGame.getActor(object).getActorSprite()->getSprite(), states);
-			}
+			mainGame.getMapCell(h,w).getCellSprite()->sprite.setPosition(w * 32, hPos);
+			target.draw(mainGame.getMapCell(h, w).getCellSprite()->sprite, states);
 		}
+	}
+	for (size_t act = 0; act < 4; act++)
+	{
+
+		target.draw(mainGame.getActor(act).getActorSprite()->sprite, states);
 	}
 	
 	/*
@@ -87,3 +86,22 @@ void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 	*/
 }
+
+/*
+ 	for (auto& h : dmoveMap)
+	{
+		for (unsigned short& w : h)
+		{
+			w = 0;
+		}
+	}
+
+	//Áûכמ:
+	//for (__int8 h = 0; h < 22; h++)
+	//{
+	//	for (__int8 w = 0; w < 22; w++)
+	//	{
+	//		dmoveMap[h][w] = 0;
+	//	}
+	//}
+*/

@@ -15,10 +15,10 @@ sf::Texture g_mainTexture = g_gameGraphics.GetTexture();
 Sprite g_wall_sprite(10, 18, g_spriteSize);
 Sprite g_floor_sprite(2, 4, g_spriteSize);//9
 Sprite g_packMan(24, 94, g_spriteSize);
-Sprite g_ghostMan(18, 94, g_spriteSize);
+Sprite g_ghostMan(17, 94, g_spriteSize);
 
 //actors
-Actor packMan(1, false, g_packMan);
+//Actor packMan(1, false, g_packMan,32,32);
 
 //cells
 Cell g_wall(g_wall_sprite, 1);

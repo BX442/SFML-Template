@@ -5,10 +5,11 @@
 #include <SFML/Graphics.hpp>
 #include "Settings.h"
 #include "Render.h"
+#include "Game.h"
 
 using std::cout;
 using std::endl;
-
+extern Game mainGame;
 
 int main()
 {
@@ -39,10 +40,10 @@ int main()
 			if (event.type == sf::Event::KeyPressed) // Имитация задержки срабатывания
 			{
 				/// Получаем нажатую клавишу - выполняем соответствующее действие
-				//if (event.key.code == sf::Keyboard::Numpad4) { testSprite.move(-1.0f, 0); }
-				//if (event.key.code == sf::Keyboard::Numpad6) { testSprite.move(1.0f, 0); }
-				//if (event.key.code == sf::Keyboard::Numpad8) { testSprite.move(0, -1.0f); }
-				//if (event.key.code == sf::Keyboard::Numpad2) { testSprite.move(0, 1.0f); }
+				if (event.key.code == sf::Keyboard::Numpad4) { mainGame.getActor(0).moveActor(LEFT);		startFrame = true;}
+				if (event.key.code == sf::Keyboard::Numpad6) { mainGame.getActor(0).moveActor(RIGHT);	startFrame = true;}
+				if (event.key.code == sf::Keyboard::Numpad8) { mainGame.getActor(0).moveActor(FORWARD);	startFrame = true;}
+				if (event.key.code == sf::Keyboard::Numpad2) { mainGame.getActor(0).moveActor(BACKWARD);	startFrame = true;}
 				if (event.key.code == sf::Keyboard::Numpad0) { startFrame = true; }
 				if (event.key.code == sf::Keyboard::Escape) window.close();
 			}
