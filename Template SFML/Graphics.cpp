@@ -14,12 +14,14 @@ Graphics::Graphics()
 
 Graphics::Graphics(const std::string& filename)
 {
-	if (!this->dtileSet.loadFromFile(filename))
+	if (!dtileSet.loadFromFile(filename))
 	{
 		std::cout << "Не удалось загрузить: " << filename << std::endl;
+	}else
+	{
+		dmainTexture.loadFromImage(dtileSet);
+		dtileSet.~Image();
 	}
-	dmainTexture.loadFromImage(dtileSet);
-	this->dtileSet.~Image();
 }
 
 void Graphics::SetTexture()

@@ -8,7 +8,7 @@
 class Cell
 {
 protected:
-	int dmapPart = 1; // 0 - Пустота, 1 - Стена, 2 - Пол
+	int dmapPart; // 0 - Пустота, 1 - Стена, 2 - Пол
 	Sprite &dCellSprite;
 	//Material
 public:

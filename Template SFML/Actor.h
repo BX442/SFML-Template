@@ -2,7 +2,7 @@
 #include "Sprite.h"
 #include "Cell.h"
 
-enum Direction
+enum class Direction
 {
 	FORWARD,
 	BACKWARD,

@@ -11,6 +11,18 @@ using std::cout;
 using std::endl;
 extern Game mainGame;
 
+void testFct(Cell *cell[])
+{
+	for (auto h = 0; h < 22; h++)
+	{
+		for (auto w = 0; w < 22; w++)
+		{
+			std::cout << cell[w * h]->getPassability() << ' ';
+		}
+		std::cout << std::endl;
+	}
+}
+
 int main()
 {
 	///Settings
@@ -25,8 +37,7 @@ int main()
 	time(&currentTime);
 	srand(static_cast<int>(currentTime)); ///cout << currentTime << endl;
 
-	bool startFrame = true;
-	
+	testFct(mainGame.getMap());
 	Render test;
 	//sf::Clock clock;
 	while (window.isOpen())
@@ -40,11 +51,11 @@ int main()
 			if (event.type == sf::Event::KeyPressed) // Имитация задержки срабатывания
 			{
 				/// Получаем нажатую клавишу - выполняем соответствующее действие
-				if (event.key.code == sf::Keyboard::Numpad4) { mainGame.getActor(0).moveActor(LEFT, mainGame.getMap());		startFrame = true;}
-				if (event.key.code == sf::Keyboard::Numpad6) { mainGame.getActor(0).moveActor(RIGHT, mainGame.getMap());		startFrame = true;}
-				if (event.key.code == sf::Keyboard::Numpad8) { mainGame.getActor(0).moveActor(FORWARD, mainGame.getMap());	startFrame = true;}
-				if (event.key.code == sf::Keyboard::Numpad2) { mainGame.getActor(0).moveActor(BACKWARD, mainGame.getMap());	startFrame = true;}
-				if (event.key.code == sf::Keyboard::Numpad0) { startFrame = true; }
+				if (event.key.code == sf::Keyboard::Numpad4) { mainGame.getActor(0).moveActor(Direction::LEFT, mainGame.getMap());	}
+				if (event.key.code == sf::Keyboard::Numpad6) { mainGame.getActor(0).moveActor(Direction::RIGHT, mainGame.getMap()); }
+				if (event.key.code == sf::Keyboard::Numpad8) { mainGame.getActor(0).moveActor(Direction::FORWARD, mainGame.getMap()); }
+				if (event.key.code == sf::Keyboard::Numpad2) { mainGame.getActor(0).moveActor(Direction::BACKWARD, mainGame.getMap()); }
+				//if (event.key.code == sf::Keyboard::Numpad0) { startFrame = true; }
 				if (event.key.code == sf::Keyboard::Escape) window.close();
 			}
 		}
@@ -55,21 +66,16 @@ int main()
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { window.close(); }
 
 
-		if (startFrame)
+		window.clear();
+		window.draw(test);
+		window.display();
+		double end = clock();
+		double seconds = (end - start) / CLOCKS_PER_SEC;
+		//fps = std::to_string(seconds);
+		//cout << f() << endl;
+		if (seconds > 0.017f)
 		{
-			window.clear();
-			window.draw(test);
-			window.display();
-			double end = clock();
-			double seconds = (end - start) / CLOCKS_PER_SEC;
-			//fps = std::to_string(seconds);
-			//cout << f() << endl;
-			if (seconds > 0.017f)
-			{
-				cout << "Отклонения: " << seconds /*<< "\tШтамп: " << clock() */ << endl;
-			}
-			startFrame = false;
-			cout << "Конец кадра" << endl;
+			cout << "Отклонения: " << seconds /*<< "\tШтамп: " << clock() */ << endl;
 		}
 	}
 }

@@ -2,7 +2,6 @@
 #include "Actor.h"
 #include <iostream>
 
-
 Actor::Actor() : dx(0), dy(0), dz(0), did(0), dActorSprite(*new Sprite)
 {
 }
@@ -16,7 +15,6 @@ Actor::Actor(unsigned int id, bool enemy, Sprite &Ref, int posX, int posY, int p
 	denemy = enemy;
 	dActorSprite.sprite.setPosition(posX * g_spriteSize, posY * g_spriteSize);
 	//std::cout << "Spite coord in Actor: x" << posX << " y" << posY << std::endl;
-
 }
 
 Actor &Actor::operator=(const Actor&&ref)
@@ -50,22 +48,32 @@ void Actor::moveActor(Direction dir, Cell *cell[])
 {
 	//TODO: ПОнять почему cell возвращает 1 вместо 2 и наоборот...
 
-	std::cout << cell[0]->getPassability() << std::endl;
+	//std::cout << " x:" << dx << " y:" << dy << " Проходимость: " << cell[(dy)*dx]->getPassability() << std::endl;
+	for (auto h = 0; h < 22; h++)
+	{
+		for (auto w = 0; w < 22; w++)
+		{
+			std::cout << cell[w*h]->getPassability()<< ' ';
+		}
+		std::cout << std::endl;
+	}
+
+	
 	switch (dir)
 		{
-		case FORWARD:
+		case Direction::FORWARD:
 			if (dy - 1 > -1)
 			{
 				std::cout << dy - 1 << std::endl;
-				std::cout << cell[(dy - 1) * dx]->getPassability() << std::endl;
+				//std::cout << cell[(dy - 1) * dx]->getPassability() << std::endl;
 				if (cell[(dy - 1)*dx]->getPassability() == 1)
 				{
-					std::cout << cell[(dy - 1) * dx]->getPassability() << std::endl;
+					//std::cout << cell[(dy - 1) * dx]->getPassability() << std::endl;
 					dy--;
 				}
 			}
 			break;
-		case BACKWARD:
+		case Direction::BACKWARD:
 			if (dy+1 < 23)
 			{
 				if (cell[dy + 1][dx].getPassability() == 2)
@@ -74,7 +82,7 @@ void Actor::moveActor(Direction dir, Cell *cell[])
 				}
 			}
 			break;
-		case LEFT:
+		case Direction::LEFT:
 			if (dx - 1 > -1)
 			{
 				if (cell[dy][dx - 1].getPassability() == 2)
@@ -83,7 +91,7 @@ void Actor::moveActor(Direction dir, Cell *cell[])
 				}
 			}
 			break;
-		case RIGHT:
+		case Direction::RIGHT:
 			if (dx + 1 < 23)
 			{
 				if (cell[dy][dx + 1].getPassability() == 2)
@@ -92,8 +100,8 @@ void Actor::moveActor(Direction dir, Cell *cell[])
 				}
 			}
 			break;
-		case UP: break;
-		case DOWN: break;
+		case Direction::UP: break;
+		case Direction::DOWN: break;
 		default:
 			std::cout << "Ошибка направления движения" << std::endl; break;
 		}

@@ -15,15 +15,14 @@ extern Cell *g_map[22][22];
 
 Render::Render()
 {
-	this->dfont.loadFromFile("data/fonts/Arial.ttf");
-	this->dfps.setCharacterSize(12);
-	this->dfps.setFont(this->dfont);
-	this->dfps.setPosition(600.f - 60.f, 10.f);
-	this->dfps.setString("0.0");
+	dfont.loadFromFile("data/fonts/Arial.ttf");
+	dtext.setCharacterSize(32);
+	dtext.setFont(dfont);
 	
-	this->dfieldHeight = g_settings.GetHeight() / g_settings.GetSpriteSize();
-	this->dfieldWidth = g_settings.GetWidth() / g_settings.GetSpriteSize();
-	this->dtileCount = dfieldHeight * dfieldWidth;
+	
+	dfieldHeight = g_settings.GetHeight() / g_settings.GetSpriteSize();
+	dfieldWidth = g_settings.GetWidth() / g_settings.GetSpriteSize();
+	dtileCount = dfieldHeight * dfieldWidth;
 
 	std::cout << "Размер экрана в плитках: " << this->GetFieldWidth() << 'x' << this->GetFieldHeight() << std::endl;
 }
@@ -38,17 +37,26 @@ int Render::GetFieldWidth() const
 	return dfieldWidth;
 }
 
-void Render::SetFpsCount(std::string fps)
+void Render::SetText(std::string &text, float x, float y)
 {
-	this->dfps.setString(fps);
+	dtext.setString(text);
+	dtext.setPosition(x, y);
+}
+
+void Render::SetText(int text, float x, float y)
+{
+	dtext.setString(std::to_string(text));
+	dtext.setPosition(x, y);
 }
 
 extern Game mainGame;
+
 void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	unsigned short hPos = 0;
 	unsigned int object = 0;
+	sf::Text text("", dfont,32);
 	//sf::Sprite sprite;
 	//sprite.setTexture(g_mainTexture);
 	//sprite.setTextureRect(sf::IntRect(19 * g_spriteSize, 16 * g_spriteSize, g_spriteSize, g_spriteSize));
@@ -58,10 +66,13 @@ void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		
 		for (auto w = 0; w < 22; w++)
 		{
-			//sprite.setTextureRect(sf::IntRect(w * g_spriteSize, h * g_spriteSize, g_spriteSize, g_spriteSize));
-			//mainGame.getMapCell(0,0).getCellSprite()->getSprite();
 			mainGame.getMapCell(h,w).getCellSprite()->sprite.setPosition(w * 32, hPos);
+			//pass = std::to_string(mainGame.getMapCell(h, w).getPassability());
+			text.setString(std::to_string(mainGame.getMapCell(h, w).getPassability()));
+			text.setPosition(w * 32, hPos);
 			target.draw(mainGame.getMapCell(h, w).getCellSprite()->sprite, states);
+			target.draw(text, states);
+
 		}
 	}
 	for (size_t act = 0; act < 4; act++)
@@ -69,7 +80,6 @@ void Render::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 		target.draw(mainGame.getActor(act).getActorSprite()->sprite, states);
 	}
-	
 	/*
 	//for (auto i = 0; i < dtileCount; i++)
 	for (auto i = 0; i < 41; i++)

@@ -9,7 +9,7 @@ class Render : public sf::Drawable, public sf::Transformable
 {
 protected:
 	sf::Font dfont;
-	sf::Text dfps;
+	sf::Text dtext;
 	int dfieldHeight;
 	int dfieldWidth;
 	int dtileCount;
@@ -18,7 +18,8 @@ public:
 	Render();
 	int GetFieldHeight() const;
 	int GetFieldWidth() const;
-	void SetFpsCount(std::string fps);
+	void SetText(std::string &text, float x, float y);
+	void SetText(int text, float x, float y);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
