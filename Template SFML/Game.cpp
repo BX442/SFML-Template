@@ -4,6 +4,9 @@
 
 extern Sprite g_packMan;
 extern Sprite g_ghostMan;
+extern Sprite g_floor_sprite;
+extern Cell g_wall;
+extern Cell g_floor;
 
 Game::Game(unsigned short (&array)[22][22])
 {
@@ -18,14 +21,17 @@ Game::Game(unsigned short (&array)[22][22])
 			else
 			{
 				dmap[h][w] = &g_floor;
+				//std::cout << g_floor.getPassability() << std::endl;
 			}
 		}
 	}
-
+	//std::cout << dmap[20][20]->getPassability() << std::endl;
 	dactors[0] = Actor(1, false, g_packMan,11,20);
 	dactors[1] = Actor(2, true, g_ghostMan,9,10);
 	dactors[2] = Actor(3, true, g_ghostMan, 10, 10);
 	dactors[3] = Actor(4, true, g_ghostMan, 11, 10);
+	//Cell test(g_floor_sprite, 4);
+	
 	
 }
 
@@ -36,9 +42,10 @@ Game::Game(unsigned short (&array)[22][22])
 
 
 
-void *Game::getMap()
+
+Cell **Game::getMap()
 {
-	return dmap;
+	return *dmap;
 }
 
 Cell &Game::getMapCell(unsigned int x, unsigned int y)
@@ -51,7 +58,7 @@ Actor &Game::getActor(unsigned int actorId)
 	return dactors[actorId];
 }
 
-Actor* Game::getActors()
+Actor *Game::getActors()
 {
 	return dactors;
 }

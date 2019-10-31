@@ -3,9 +3,6 @@
 #include "Cell.h"
 #include "Actor.h"
 
-extern Cell g_wall;
-extern Cell g_floor;
-
 /*unsigned short mptmp[24][24] = {
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
 	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
@@ -43,9 +40,9 @@ public:
 
 	//Game& operator=(const Game&& ref);
 
-	void *getMap();
+	Cell **getMap();
 	Cell &getMapCell(unsigned int, unsigned int);
 	Actor &getActor(unsigned int actorId);
-	Actor* getActors();
+	Actor *getActors();
 };
 

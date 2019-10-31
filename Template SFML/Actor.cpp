@@ -45,31 +45,73 @@ bool Actor::getEnemyStatus()
 	return denemy;
 }
 
-void Actor::moveActor(Direction dir)
+
+void Actor::moveActor(Direction dir, Cell *cell[])
 {
-	std::cout << "Координата спрайта: x" << dx << " y" << dy << std::endl;
+	//TODO: ПОнять почему cell возвращает 1 вместо 2 и наоборот...
+
+	std::cout << cell[0]->getPassability() << std::endl;
 	switch (dir)
-	{
-	case FORWARD:
-		dy--;
-		break;
-	case BACKWARD:
-		dy++;
-		break;
-	case LEFT:
-		dx--;
-		break;
-	case RIGHT:
-		dx++;
-		break;
-	case UP: break;
-	case DOWN: break;
-	default:
-		std::cout << "Ошибка направления движения" << std::endl; break;
-	}
+		{
+		case FORWARD:
+			if (dy - 1 > -1)
+			{
+				std::cout << dy - 1 << std::endl;
+				std::cout << cell[(dy - 1) * dx]->getPassability() << std::endl;
+				if (cell[(dy - 1)*dx]->getPassability() == 1)
+				{
+					std::cout << cell[(dy - 1) * dx]->getPassability() << std::endl;
+					dy--;
+				}
+			}
+			break;
+		case BACKWARD:
+			if (dy+1 < 23)
+			{
+				if (cell[dy + 1][dx].getPassability() == 2)
+				{
+					dy++;
+				}
+			}
+			break;
+		case LEFT:
+			if (dx - 1 > -1)
+			{
+				if (cell[dy][dx - 1].getPassability() == 2)
+				{
+					dx--;
+				}
+			}
+			break;
+		case RIGHT:
+			if (dx + 1 < 23)
+			{
+				if (cell[dy][dx + 1].getPassability() == 2)
+				{
+					dx++;
+				}
+			}
+			break;
+		case UP: break;
+		case DOWN: break;
+		default:
+			std::cout << "Ошибка направления движения" << std::endl; break;
+		}
+		dActorSprite.sprite.setPosition(dx * g_spriteSize, dy * g_spriteSize);
+}
 
-	dActorSprite.sprite.setPosition(dx * g_spriteSize, dy * g_spriteSize);
-	std::cout << "Координата спрайта: x" << dx << " y" << dy << std::endl;
+int Actor::getX()
+{
+	return dx;
+}
 
+int Actor::getY()
+{
+	return dy;
+}
+
+int Actor::getZ()
+{
+	return dz;
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Sprite.h"
+#include "Cell.h"
 
 enum Direction
 {
@@ -29,9 +30,9 @@ public:
 	unsigned int getId();
 	bool getEnemyStatus();
 
-	void moveActor(Direction dir);
+	void moveActor(Direction dir, Cell *cell[]);
 
-	int getX() { return dx; };
-	int getY() { return dy; };
-	int getZ() { return dz; };
+	int getX();
+	int getY();
+	int getZ();
 };

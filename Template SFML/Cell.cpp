@@ -1,14 +1,15 @@
 #include "pch.h"
 #include "Cell.h"
+#include <iostream>
 
-Cell::Cell() :dCellSprite(*new Sprite)
+extern Sprite g_floor_sprite;
+
+Cell::Cell() :dmapPart(0), dCellSprite(*new Sprite)
 {
 }
 
-Cell::Cell(Sprite &Ref, unsigned __int8 object) : dCellSprite(Ref)
+Cell::Cell(Sprite &Ref, int object): dmapPart(object), dCellSprite(Ref)
 {
-	dCellSprite = Ref;
-	dmapPart = object;
 }
 
 Cell &Cell::operator=(const Cell &ref)
@@ -21,4 +22,9 @@ Cell &Cell::operator=(const Cell &ref)
 Sprite *Cell::getCellSprite()
 {
 	return &dCellSprite;
+}
+
+int Cell::getPassability()
+{
+	return dmapPart;
 }

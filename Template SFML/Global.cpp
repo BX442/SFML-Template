@@ -23,9 +23,10 @@ Sprite g_ghostMan(17, 94, g_spriteSize);
 //cells
 Cell g_wall(g_wall_sprite, 1);
 Cell g_floor(g_floor_sprite, 2);
+Cell test(g_floor_sprite, 4);
 
 //map
-Cell *g_map[22][22];
+//Cell *g_map[22][22];
 unsigned short mptmp[22][22] = {
 	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 	{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},

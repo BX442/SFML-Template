@@ -8,13 +8,16 @@
 class Cell
 {
 protected:
+	int dmapPart = 1; // 0 - Пустота, 1 - Стена, 2 - Пол
 	Sprite &dCellSprite;
 	//Material
-	unsigned __int8 dmapPart = 1; // 0 - Пустота, 1 - Стена, 2 - Пол
 public:
 	Cell();
-	Cell(Sprite &Ref, unsigned __int8 = 1);
+	Cell(Sprite &Ref, int object = 1);
 	Cell &operator=(const Cell &ref);
 
 	Sprite *getCellSprite();
+
+	// * Возможно ли пройти по плитке "0 - Пустота, 1 - Стена, 2 - Пол"
+	int getPassability();
 };

@@ -40,10 +40,10 @@ int main()
 			if (event.type == sf::Event::KeyPressed) // Имитация задержки срабатывания
 			{
 				/// Получаем нажатую клавишу - выполняем соответствующее действие
-				if (event.key.code == sf::Keyboard::Numpad4) { mainGame.getActor(0).moveActor(LEFT);		startFrame = true;}
-				if (event.key.code == sf::Keyboard::Numpad6) { mainGame.getActor(0).moveActor(RIGHT);	startFrame = true;}
-				if (event.key.code == sf::Keyboard::Numpad8) { mainGame.getActor(0).moveActor(FORWARD);	startFrame = true;}
-				if (event.key.code == sf::Keyboard::Numpad2) { mainGame.getActor(0).moveActor(BACKWARD);	startFrame = true;}
+				if (event.key.code == sf::Keyboard::Numpad4) { mainGame.getActor(0).moveActor(LEFT, mainGame.getMap());		startFrame = true;}
+				if (event.key.code == sf::Keyboard::Numpad6) { mainGame.getActor(0).moveActor(RIGHT, mainGame.getMap());		startFrame = true;}
+				if (event.key.code == sf::Keyboard::Numpad8) { mainGame.getActor(0).moveActor(FORWARD, mainGame.getMap());	startFrame = true;}
+				if (event.key.code == sf::Keyboard::Numpad2) { mainGame.getActor(0).moveActor(BACKWARD, mainGame.getMap());	startFrame = true;}
 				if (event.key.code == sf::Keyboard::Numpad0) { startFrame = true; }
 				if (event.key.code == sf::Keyboard::Escape) window.close();
 			}
