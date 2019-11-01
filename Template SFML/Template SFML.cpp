@@ -11,16 +11,18 @@ using std::cout;
 using std::endl;
 extern Game mainGame;
 
-void testFct(Cell *cell[])
+void testFct(Cell **cell)
 {
-	for (auto h = 0; h < 22; h++)
-	{
-		for (auto w = 0; w < 22; w++)
-		{
-			std::cout << cell[w * h]->getPassability() << ' ';
-		}
-		std::cout << std::endl;
-	}
+	std::cout << cell[1][1].getPassability() << ' ';
+	//for (auto h = 0; h < 22; h++)
+	//{
+	//	for (auto w = 0; w < 22; w++)
+	//	{
+	//		std::cout << cell[h][w].getPassability() << ' ';
+	//	}
+	//	std::cout << '\n';
+	//}
+	std::cout << std::endl;
 }
 
 int main()
@@ -75,7 +77,7 @@ int main()
 		//cout << f() << endl;
 		if (seconds > 0.017f)
 		{
-			cout << "Отклонения: " << seconds /*<< "\tШтамп: " << clock() */ << endl;
+			///cout << "Отклонения: " << seconds /*<< "\tШтамп: " << clock() */ << endl;
 		}
 	}
 }

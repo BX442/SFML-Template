@@ -44,20 +44,19 @@ bool Actor::getEnemyStatus()
 }
 
 
-void Actor::moveActor(Direction dir, Cell *cell[])
+void Actor::moveActor(Direction dir, Cell **cell)
 {
 	//TODO: ПОнять почему cell возвращает 1 вместо 2 и наоборот...
-
 	//std::cout << " x:" << dx << " y:" << dy << " Проходимость: " << cell[(dy)*dx]->getPassability() << std::endl;
 	for (auto h = 0; h < 22; h++)
 	{
 		for (auto w = 0; w < 22; w++)
 		{
-			std::cout << cell[w*h]->getPassability()<< ' ';
+			std::cout << cell[h][w].getPassability()<< ' ';
 		}
-		std::cout << std::endl;
+		std::cout << '\n';
 	}
-
+	std::cout << std::endl;
 	
 	switch (dir)
 		{
