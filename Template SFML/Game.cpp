@@ -25,8 +25,8 @@ Game::Game(unsigned short (&array)[22][22])
 			}
 		}
 	}
-	std::cout << "Проходимость g_wall при инициализации карты в конструкторе: " << g_wall.getPassability() << std::endl;
-	std::cout << "Проходимость нуля при инициализации карты в конструкторе g_wall'ом: " << dmap[0][0]->getPassability() << std::endl;
+	std::cout << "Проходимость g_wall при инициализации карты в конструкторе: " << g_wall.getPassability() << '\n' <<
+				 "Проходимость нуля при инициализации карты в конструкторе g_wall'ом: " << dmap[0][0]->getPassability() << std::endl;
 	dactors[0] = Actor(1, false, g_packMan,11,20);
 	dactors[1] = Actor(2, true, g_ghostMan,9,10);
 	dactors[2] = Actor(3, true, g_ghostMan, 10, 10);
@@ -36,18 +36,11 @@ Game::Game(unsigned short (&array)[22][22])
 	
 }
 
-//Game& Game::operator=(const Game&& ref)
-//{
-//	// вставьте здесь оператор return
-//}
-
-
-
-
 Cell **Game::getMap()
 {
 	return *dmap;
 }
+
 
 Cell &Game::getMapCell(unsigned int x, unsigned int y)
 {

@@ -13,15 +13,15 @@ extern Game mainGame;
 
 void testFct(Cell **cell)
 {
-	std::cout << cell[1][1].getPassability() << ' ';
-	//for (auto h = 0; h < 22; h++)
-	//{
-	//	for (auto w = 0; w < 22; w++)
-	//	{
-	//		std::cout << cell[h][w].getPassability() << ' ';
-	//	}
-	//	std::cout << '\n';
-	//}
+	//std::cout << cell[1][1].getPassability() << ' ';
+	for (auto h = 0; h < 22; h++)
+	{
+		for (auto w = 0; w < 22; w++)
+		{
+			std::cout << cell[h][w].getPassability() << ' ';
+		}
+		std::cout << '\n';
+	}
 	std::cout << std::endl;
 }
 
@@ -53,7 +53,7 @@ int main()
 			if (event.type == sf::Event::KeyPressed) // Имитация задержки срабатывания
 			{
 				/// Получаем нажатую клавишу - выполняем соответствующее действие
-				if (event.key.code == sf::Keyboard::Numpad4) { mainGame.getActor(0).moveActor(Direction::LEFT, mainGame.getMap());	}
+				if (event.key.code == sf::Keyboard::Numpad4) { mainGame.getActor(0).moveActor(Direction::LEFT, mainGame.getMap()); }
 				if (event.key.code == sf::Keyboard::Numpad6) { mainGame.getActor(0).moveActor(Direction::RIGHT, mainGame.getMap()); }
 				if (event.key.code == sf::Keyboard::Numpad8) { mainGame.getActor(0).moveActor(Direction::FORWARD, mainGame.getMap()); }
 				if (event.key.code == sf::Keyboard::Numpad2) { mainGame.getActor(0).moveActor(Direction::BACKWARD, mainGame.getMap()); }

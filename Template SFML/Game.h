@@ -33,7 +33,11 @@
 class Game
 {
 protected:
-	Cell *dmap[22][22];
+	int row = 22;
+	int col = 22;
+
+	Cell *dmap[22][22]{};
+	std::vector<std::vector<Cell> > imatrix;
 	Actor dactors[4];
 public:
 	Game(unsigned short (&array)[22][22]);
